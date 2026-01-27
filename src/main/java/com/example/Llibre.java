@@ -1,18 +1,42 @@
 package com.example;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Llibres", schema = "biblioteca")
+
 public class Llibre {
 
-    private int id, any;
-    private double preu;
-    private String titol, autor, ISBN, editorial;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
+    private String isbn;
+    private int any_publicacio;
+    private double preu;
+    private String titol, autor, editorial;
+
+    public Llibre () {} ;
+
+    public Llibre (String titol, String autor, int any_publicacio, double preu, String editorial) {
+        this.titol = titol;
+        this.autor = autor;
+        this.any_publicacio = any_publicacio;
+        this.preu = preu;
+        this.editorial = editorial;
+    };
+
+
+    public int getAny() {
+        return any_publicacio;
+    }
 
     public int getId() {
         return id;
-    }
-
-    public int getAny() {
-        return any;
     }
 
     public double getPreu() {
@@ -28,19 +52,15 @@ public class Llibre {
     }
 
     public String getISBN() {
-        return ISBN;
+        return isbn;
     }
 
     public String getEditorial() {
         return editorial;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setAny(int any) {
-        this.any = any;
+    public void setAny(int any_publicacio) {
+        this.any_publicacio = any_publicacio;
     }
 
     public void setPreu(double preu) {
@@ -55,19 +75,18 @@ public class Llibre {
         this.autor = autor;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setISBN(String isbn) {
+        this.isbn = isbn;
     }
 
     public void setEditorial(String editorial) {
         this.editorial = editorial;
     }
 
-    @Override
-    public String toString() {
-        return "Llibre{" + "id=" + id + ", any=" + any + ", preu=" + preu + ", titol=" + titol + ", autor=" + autor + ", ISBN=" + ISBN + ", editorial=" + editorial + '}';
+    public void setId(int id) {
+        this.id = id;
     }
 
-    
+   
 
 }

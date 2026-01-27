@@ -2,39 +2,40 @@ package com.example;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-
 public class Main {
+
     public static void main(String[] args) {
 
-        System.out.println("cojones en almibar");
-        
         Llibre l1 = new Llibre();
-        l1.setTitol("Luna de Pluton");
-        l1.setAutor("Dross");
-        l1.setEditorial("Planeta");
-        l1.setAny(2015);
-        l1.setPreu(19.99);
-        l1.setISBN("1234ACB");
+        l1.setISBN("9788441425149");
+        l1.setTitol("La Divina Comedia");
+        l1.setAutor("Dante Alighieri");
+        l1.setEditorial("Edaf");
+        l1.setAny(2010);
+        l1.setPreu(17.10);
 
-        System.out.println("hoffla");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
 
-        //aqui hay funciones del hibernate para llamar
-        Configuration config = new Configuration();
-        config.addAnnotatedClass(com.example.Llibre.class);
-        config.configure("hibernate.cfg.xml");
-        
-        SessionFactory sf = config.buildSessionFactory();
-        
-        Session session = sf.openSession();
-        
-        //guardar objete al hibernate
-        session.persist(l1);
-        
+        try {
+            session.persist(l1);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
-        
     }
 
-
 }
+/*
+SELECT setval(
+  'biblioteca.llibres_id_seq',
+  (SELECT MAX(id) FROM biblioteca.llibres)
+);
+*/
