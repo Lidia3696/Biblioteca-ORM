@@ -1,4 +1,4 @@
-package com.example;
+package com.example.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,8 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "Llibres", schema = "biblioteca")
+@Entity(name = "Llibre")
+@Table(name = "llibres", schema = "biblioteca")
 
 public class Llibre {
 
@@ -30,7 +30,12 @@ public class Llibre {
         this.editorial = editorial;
     };
 
-
+    @Override
+    public String toString() {
+        return 
+          "| Id: " + id + " | Titol: " + titol + " | Autor: " + autor +  " | ISBN: " + isbn + " | Any: " + any_publicacio + " | Preu: " + preu + " | Editorial: " + editorial + " | ";
+    }
+    
     public int getAny() {
         return any_publicacio;
     }

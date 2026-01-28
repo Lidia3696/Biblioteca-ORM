@@ -31,7 +31,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
 
-        <mapping class="com.example.Llibre"/>
+        <mapping class="com.example.model.Llibre"/>
 
     </session-factory>
 </hibernate-configuration>

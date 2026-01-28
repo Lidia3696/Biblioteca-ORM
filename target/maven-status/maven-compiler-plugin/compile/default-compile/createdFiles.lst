@@ -1,0 +1,6 @@
+com\example\model\Prestec.class
+com\example\model\Usuari.class
+com\example\model\Llibre.class
+com\example\dao\LlibreDAO.class
+com\example\dao\UsuariDAO.class
+com\example\dao\PrestecDAO.class
