@@ -1,13 +1,10 @@
-<<<<<<< HEAD
-/media/alumnet/ESD-USB/Biblioteca_ORM/bibliotecaorm/src/main/java/com/example/Llibre.java
-/media/alumnet/ESD-USB/Biblioteca_ORM/bibliotecaorm/src/main/java/com/example/Main.java
-=======
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/HibernateUtil.java
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/Main.java
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/dao/LlibreDAO.java
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/dao/PrestecDAO.java
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/dao/UsuariDAO.java
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/model/Llibre.java
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/model/Prestec.java
-/home/alumnet/Baixades/Biblioteca-ORM-develop/src/main/java/com/example/model/Usuari.java
->>>>>>> bce7bb4 (final)
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\dao\ConsultesDAO.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\dao\LlibreDAO.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\dao\PrestecDAO.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\dao\UsuariDAO.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\HibernateUtil.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\Main.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\model\Consultes.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\model\Llibre.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\model\Prestec.java
+D:\Users\Lidia Ing\Documents\Biblioteca_ORM\Biblioteca-ORM\Biblioteca-ORM\src\main\java\com\example\model\Usuari.java

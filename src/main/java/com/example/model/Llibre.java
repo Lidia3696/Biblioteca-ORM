@@ -16,7 +16,7 @@ public class Llibre {
     private int id;
 
     private String isbn;
-    private int any_publicacio;
+    private int any_publicacio, stock;
     private double preu;
     private String titol, autor, editorial;
 
@@ -90,6 +90,14 @@ public class Llibre {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getStock() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setStock(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
    

@@ -6,9 +6,11 @@ import java.util.Scanner;
 import com.example.dao.LlibreDAO;
 import com.example.dao.PrestecDAO;
 import com.example.dao.UsuariDAO;
+import com.example.dao.ConsultesDAO;
 import com.example.model.Llibre;
 import com.example.model.Prestec;
 import com.example.model.Usuari;
+import com.example.model.Consultes;
 
 public class Main {
 
@@ -31,12 +33,18 @@ public class Main {
             sc.nextLine();
 
             switch (op) {
-                case 1 -> menuLlibres(sc);
-                case 2 -> menuUsuaris(sc);
-                case 3 -> menuPrestecs(sc);
-                case 4 -> Consultes.menuConsultes(sc);
-                case 0 -> System.out.println("Sortint del programa...");
-                default -> System.out.println("Opció no vàlida.");
+                case 1 ->
+                    menuLlibres(sc);
+                case 2 ->
+                    menuUsuaris(sc);
+                case 3 ->
+                    menuPrestecs(sc);
+                case 4 ->
+                    Consultes.menuConsultes(sc);
+                case 0 ->
+                    System.out.println("Sortint del programa...");
+                default ->
+                    System.out.println("Opció no vàlida.");
             }
 
         } while (op != 0);
@@ -95,7 +103,8 @@ public class Main {
                     }
                 }
 
-                case 2 -> llibredao.llistar();
+                case 2 ->
+                    llibredao.llistar();
 
                 case 3 -> {
                     System.out.println("ID del llibre a modificar:");
@@ -108,17 +117,71 @@ public class Main {
                         break;
                     }
 
-                    System.out.println("Nou títol (" + llibre.getTitol() + "):");
-                    llibre.setTitol(sc.nextLine());
+                    //modificar els elements que es vulguin del llibre cada vegada que es selecciona
+                    int opc;
 
-                    System.out.println("Nou autor (" + llibre.getAutor() + "):");
-                    llibre.setAutor(sc.nextLine());
+                    do {
+                        System.out.println("""
+                            Què vols modificar?
+                            1. Títol
+                            2. Autor
+                            3. Any de publicació
+                            4. Preu
+                            5. Editorial
+                            0. Guardar i sortir
+                            """);
+
+                        opc = sc.nextInt();
+                        sc.nextLine();
+
+                        switch (opc) {
+                            case 1 -> {
+                                System.out.println("Nou títol (" + llibre.getTitol() + "):");
+                                llibre.setTitol(sc.nextLine());
+                            }
+
+                            case 2 -> {
+                                System.out.println("Nou autor (" + llibre.getAutor() + "):");
+                                llibre.setAutor(sc.nextLine());
+                            }
+
+                            case 3 -> {
+                                System.out.println("Nou any de publicació (" + llibre.getAny() + "):");
+                                llibre.setAny(sc.nextInt());
+                                sc.nextLine();
+                            }
+
+                            case 4 -> {
+                                try {
+                                    System.out.println("Nou preu (" + llibre.getPreu() + "):");
+                                    llibre.setPreu(sc.nextDouble());
+                                    sc.nextLine();
+                                } catch (Exception e) {
+                                    System.out.println("Error actualitzant preu. " + e.getMessage());
+                                }
+
+                            }
+
+                            case 5 -> {
+                                System.out.println("Nou editorial (" + llibre.getEditorial() + "):");
+                                llibre.setEditorial(sc.nextLine());
+                            }
+
+                            case 0 ->
+                                System.out.println("Desant canvis...");
+
+                            default ->
+                                System.out.println("Opció no vàlida.");
+                        }
+
+                    } while (opc != 0);
 
                     llibredao.modificar(llibre);
                     System.out.println("Llibre modificat correctament.");
-                }
 
-                case 4 -> {
+                }
+            
+            case 4 -> {
                     System.out.println("ID del llibre a eliminar:");
                     int id = sc.nextInt();
                     sc.nextLine();
@@ -137,11 +200,12 @@ public class Main {
             }
 
         } while (op != 0);
-    }
+        }
 
-    // ---------------------------------------------------------
-    // MENU USUARIS
-    // ---------------------------------------------------------
+        // ---------------------------------------------------------
+        // MENU USUARIS
+        // ---------------------------------------------------------
+
     public static void menuUsuaris(Scanner sc) {
 
         UsuariDAO usuariDAO = new UsuariDAO();
@@ -173,24 +237,37 @@ public class Main {
                     System.out.println("Usuari afegit.");
                 }
 
-                case 2 -> usuariDAO.findAll().forEach(System.out::println);
+                case 2 ->
+                    usuariDAO.findAll().forEach(System.out::println);
 
                 case 3 -> {
-                    System.out.println("ID usuari a eliminar:");
-                    int id = sc.nextInt();
-                    sc.nextLine();
+                    try {
+                        System.out.println("ID usuari a eliminar:");
+                        int id = sc.nextInt();
+                        sc.nextLine();
 
-                    Usuari u = usuariDAO.findById(id);
-                    if (u != null) {
-                        usuariDAO.delete(u);
-                        System.out.println("Usuari eliminat.");
-                    } else {
-                        System.out.println("No existeix aquest usuari.");
+                        Usuari u = usuariDAO.findById(id);
+
+                        if (u != null) {
+                            usuariDAO.delete(u);
+                            System.out.println("Usuari eliminat.");
+                        } else {
+                            System.out.println("No existeix aquest usuari.");
+                        }
+
+                    } catch (org.hibernate.exception.ConstraintViolationException e) {
+                        System.out.println("No es pot eliminar l'usuari perquè té préstecs associats.");
+
+                    } catch (Exception e) {
+                        System.out.println("Error inesperat: " + e.getMessage());
                     }
                 }
 
-                case 0 -> System.out.println("Sortint del menú usuaris...");
-                default -> System.out.println("Opció no vàlida.");
+
+                case 0 ->
+                    System.out.println("Sortint del menú usuaris...");
+                default ->
+                    System.out.println("Opció no vàlida.");
             }
 
         } while (op != 0);
@@ -246,13 +323,15 @@ public class Main {
                     System.out.println("Préstec creat correctament.");
                 }
 
-                case 2 -> prestecDAO.findAll().forEach(System.out::println);
+                case 2 ->
+                    prestecDAO.findAll().forEach(System.out::println);
 
-                case 0 -> System.out.println("Sortint del menú préstecs...");
-                default -> System.out.println("Opció no vàlida.");
+                case 0 ->
+                    System.out.println("Sortint del menú préstecs...");
+                default ->
+                    System.out.println("Opció no vàlida.");
             }
 
         } while (op != 0);
     }
 }
-

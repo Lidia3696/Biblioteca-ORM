@@ -1,54 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-<<<<<<< HEAD
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-
-   <modelVersion>4.0.0</modelVersion>
-
-
-   <groupId>com.example</groupId>
-   <artifactId>bibliotecaorm</artifactId>
-   <version>1.0-SNAPSHOT</version>
-
-
-   <properties>
-       <maven.compiler.source>17</maven.compiler.source>
-       <maven.compiler.target>17</maven.compiler.target>
-   </properties>
-
-
-   <dependencies>
-
-
-       <!-- Hibernate Core 7 -->
-       <dependency>
-           <groupId>org.hibernate.orm</groupId>
-           <artifactId>hibernate-core</artifactId>
-           <version>7.2.0.Final</version>
-       </dependency>
-
-
-       <!-- PostgreSQL Driver -->
-       <dependency>
-           <groupId>org.postgresql</groupId>
-           <artifactId>postgresql</artifactId>
-           <version>42.7.8</version>
-       </dependency>
-
-
-       <!-- JPA API (versión correcta para Hibernate 7) -->
-       <dependency>
-           <groupId>jakarta.persistence</groupId>
-           <artifactId>jakarta.persistence-api</artifactId>
-           <version>3.2.0</version>
-       </dependency>
-
-
-   </dependencies>
-
-=======
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -104,6 +55,5 @@
     </dependency>
     
     </dependencies>
->>>>>>> bce7bb4 (final)
 
 </project>
