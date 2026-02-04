@@ -93,11 +93,11 @@ public class Llibre {
     }
 
     public int getStock() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.stock;
     }
 
-    public void setStock(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setStock(int s) {
+        this.stock = s;
     }
 
    

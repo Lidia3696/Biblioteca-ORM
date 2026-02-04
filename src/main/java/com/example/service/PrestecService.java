@@ -1,3 +1,5 @@
+package com.example.service;
+
 import com.example.HibernateUtil;
 import com.example.model.Llibre;
 import com.example.model.Prestec;
@@ -7,6 +9,12 @@ import org.hibernate.Transaction;
 import java.time.LocalDate;
 
 public class PrestecService {
+    
+    public class Main {
+        public static void main(String[] args) {
+            PrestecService service = new PrestecService();
+        }
+    }
 
     public void crearPrestec(Usuari u, Llibre l) {
 
@@ -42,27 +50,33 @@ public class PrestecService {
         }
     }
 
-    public void tancarPrestec(Prestec p) {
+    public void tancarPrestec(int prestecId) {
 
         Transaction tx = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             tx = session.beginTransaction();
+            
+            Prestec prestec = session.createQuery(
+                "FROM Prestec p LEFT JOIN FETCH p.usuari LEFT JOIN FETCH p.llibre WHERE p.id = :id", 
+                Prestec.class)
+                .setParameter("id", prestecId)
+                .uniqueResult();
 
-            if (p == null) {
+            if (prestec == null) {
                 throw new RuntimeException("Prestec no trobat");
             }
 
-            if (p.getDataFi() != null) {
+            if (prestec.getDataFi() != null) {
                 throw new RuntimeException("Prestec ja tancat");
             }
 
-            p.setDataFi(LocalDate.now());
+            prestec.setDataFi(LocalDate.now());
 
-            Llibre l = p.getLlibre();
-            l.setStock(l.getStock() + 1);
-
+            Llibre llibre = prestec.getLlibre();
+            llibre.setStock(llibre.getStock() + 1);
+            
             tx.commit();
 
         } catch (Exception e) {

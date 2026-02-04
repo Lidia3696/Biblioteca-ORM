@@ -1,10 +1,13 @@
-com\example\dao\ConsultesDAO.class
-com\example\model\Prestec.class
 com\example\HibernateUtil.class
 com\example\model\Usuari.class
 com\example\Main.class
+com\example\dao\UsuariDAO.class
+com\example\model\Consultes.class
+com\example\service\PrestecService$Main.class
+com\example\dao\ConsultesDAO.class
+com\example\model\Prestec.class
 com\example\model\Llibre.class
 com\example\dao\LlibreDAO.class
-com\example\dao\UsuariDAO.class
+com\example\service\PrestecService.class
+PrestecService.class
 com\example\dao\PrestecDAO.class
-com\example\model\Consultes.class

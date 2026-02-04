@@ -10,40 +10,52 @@ import java.util.List;
 public class PrestecDAO {
 
     public void save(Prestec prestec) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        session.persist(prestec);
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.persist(prestec);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        }
     }
 
     public Prestec findById(int id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Prestec p = session.get(Prestec.class, id);
-        session.close();
-        return p;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM Prestec p LEFT JOIN FETCH p.usuari LEFT JOIN FETCH p.llibre WHERE p.id = :id", Prestec.class)
+                    .setParameter("id", id)
+                    .uniqueResult();
+        }
     }
 
     public List<Prestec> findAll() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Prestec> list = session.createQuery("FROM Prestec", Prestec.class).list();
-        session.close();
-        return list;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM Prestec p LEFT JOIN FETCH p.usuari LEFT JOIN FETCH p.llibre", Prestec.class).list();
+        }
     }
 
     public void update(Prestec prestec) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        session.merge(prestec);
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.merge(prestec);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        }
     }
 
     public void delete(Prestec prestec) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        session.remove(prestec);
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.remove(prestec);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            throw e;
+        }
     }
 }

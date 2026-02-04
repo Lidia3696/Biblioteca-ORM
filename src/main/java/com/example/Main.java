@@ -11,10 +11,15 @@ import com.example.model.Llibre;
 import com.example.model.Prestec;
 import com.example.model.Usuari;
 import com.example.model.Consultes;
+import com.example.service.PrestecService;
+
+
 
 public class Main {
+    
 
     public static void main(String[] args) {
+        
 
         Scanner sc = new Scanner(System.in);
         int op;
@@ -281,6 +286,7 @@ public class Main {
         PrestecDAO prestecDAO = new PrestecDAO();
         UsuariDAO usuariDAO = new UsuariDAO();
         LlibreDAO llibreDAO = new LlibreDAO();
+        PrestecService pservice = new PrestecService();
 
         int op;
 
@@ -289,7 +295,8 @@ public class Main {
             System.out.println("*   MENU GESTIO PRESTECS  *");
             System.out.println("***************************");
             System.out.println("1. Crear préstec");
-            System.out.println("2. Llistar préstecs");
+            System.out.println("2. Tancar préstec");
+            System.out.println("3. Llistar préstecs");
             System.out.println("0. Sortir");
 
             op = sc.nextInt();
@@ -317,13 +324,25 @@ public class Main {
                         break;
                     }
 
-                    Prestec p = new Prestec(u, l, LocalDate.now(), LocalDate.now().plusDays(15));
-                    prestecDAO.save(p);
+                    pservice.crearPrestec(u, l);
 
                     System.out.println("Préstec creat correctament.");
                 }
 
-                case 2 ->
+                case 2 -> {
+                    System.out.println("ID del préstec a tancar:");
+                    int idP = sc.nextInt();
+                    sc.nextLine();
+                    
+                    try {
+                        pservice.tancarPrestec(idP);
+                        System.out.println("Préstec tancat correctament.");
+                    } catch (RuntimeException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+
+                case 3 ->
                     prestecDAO.findAll().forEach(System.out::println);
 
                 case 0 ->
