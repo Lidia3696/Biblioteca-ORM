@@ -25,6 +25,7 @@ public class Main {
         int op;
 
         do {
+            //menu principal
             System.out.println("******************************");
             System.out.println("*   MENU GESTIO BIBLIOTECA   *");
             System.out.println("******************************");

@@ -15,14 +15,14 @@ import jakarta.persistence.Table;
 public class Prestec {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //id autoincrement
     private int id;
 
-    @ManyToOne
+    @ManyToOne //relacions amb el usuari (un usuari te molts prestecs)
     @JoinColumn(name = "usuari_id")
     private Usuari usuari;
 
-    @ManyToOne
+    @ManyToOne //relacions amb el llibre (un prestec te molts llibres)
     @JoinColumn(name = "llibre_id")
     private Llibre llibre;
 

@@ -10,6 +10,8 @@ import java.time.LocalDate;
 
 public class PrestecService {
     
+    // SERVICE PER PODER FER TRANSACCIONS (INCREMENTAR I DECREMENTAR STOCK)
+    
     public class Main {
         public static void main(String[] args) {
             PrestecService service = new PrestecService();

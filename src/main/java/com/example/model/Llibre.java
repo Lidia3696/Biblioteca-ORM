@@ -33,7 +33,7 @@ public class Llibre {
     @Override
     public String toString() {
         return 
-          "| Id: " + id + " | Titol: " + titol + " | Autor: " + autor +  " | ISBN: " + isbn + " | Any: " + any_publicacio + " | Preu: " + preu + " | Editorial: " + editorial + " | ";
+          "| Id: " + id + " | Titol: " + titol + " | Autor: " + autor +  " | ISBN: " + isbn + " | Any: " + any_publicacio + " | Preu: " + preu + " | Editorial: " + editorial + " | Estoc: " + stock;
     }
     
     public int getAny() {

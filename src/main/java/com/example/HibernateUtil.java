@@ -6,6 +6,8 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtil {
 
     private static final SessionFactory sessionFactory;
+    
+    // FUNCIONS DE HIBERNATE EN UNA MATEIXA CLASSE 
 
     static {
         try {
@@ -20,11 +22,12 @@ public class HibernateUtil {
         }
     }
 
+    //obtenir la sessio
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    
+    //tancar la sessio
     public static void shutdown() {
          sessionFactory.close();
     }
